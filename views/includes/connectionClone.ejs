@@ -1,0 +1,49 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Connection: <b><%= model.CONN_ID %></h5>
+            </div>
+            <div class="modal-body">
+                <form action="/connectionClone/" method="post">
+                
+                    <select class="form-select mb-4" name="sourceApp" >
+                        <option value="<%= model.SOURCE_ASSET_ID %>" selected><%= model.SOURCE_ASSET_NAME %></option>
+                        <% for (const a of assetModel) { %>
+                        <option value="<%= a.ASSET_ID %>"><%= a.ASSET_NAME %></option>
+                        <% } %>
+                </select>
+                
+                <select class="form-select mb-4" name="destApp" >
+                    <option value="<%= model.DEST_ASSET_ID %>" selected><%= model.DEST_ASSET_NAME %></option>
+                    <% for (const a of assetModel) { %>
+                    <option value="<%= a.ASSET_ID %>"><%= a.ASSET_NAME %></option>
+                    <% } %>
+                </select>
+
+                <input type="proto" id="proto" class="form-control mb-4" name="proto" placeholder="Protocol Used" value="<%= model.PROTOCOL %>">
+                <input type="enc" id="enc" class="form-control mb-4" name="enc" placeholder="Encryption Type" value="<%= model.ENCRYPTION %>">
+                <input type="serverAuth" id="serverAuth" class="form-control mb-4" name="serverAuth" placeholder="Server Authentication" value="<%= model.SERVER_AUTHENTICATION %>">
+                <input type="clientAuth" id="clientAuth" class="form-control mb-4" name="clientAuth" placeholder="Client Authentication" value="<%= model.CLIENT_AUTHENTICATION %>">
+                <input type="clientAuthz" id="clientAuthz" class="form-control mb-4" name="clientAuthz" placeholder="Client Authorisation" value="<%= model.CLIENT_AUTHORISATION %>">
+                <input type="serverCRL" id="serverCRL" class="form-control mb-4" name="serverCRL" placeholder="Server CRL" value="<%= model.SERVER_CRL %>">
+                <input type="clientCRL" id="clientCRL" class="form-control mb-4" name="clientCRL" placeholder="Client CRL" value="<%= model.CLIENT_CRL %>">
+                <input type="desc" id="desc" class="form-control mb-4" name="desc" placeholder="Description" value="<%= model.DESCRIPTION %>">
+                    
+
+
+
+                        <div>
+                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
+                                onclick="closeModal()">Cancel</button></div>
+                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
+                                onclick="closeModal()">Add</button></div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>

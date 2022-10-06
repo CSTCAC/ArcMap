@@ -1,0 +1,16 @@
+{
+  "name": "ArcMap",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "~3.1.6",
+    "express": "~4.17.3",
+    "express-fileupload": "^1.4.0",
+    "sqlite3": "^5.0.4",
+    "tw-elements": "^1.0.0-alpha12",
+    "uuid": "^9.0.0"
+  }
+}

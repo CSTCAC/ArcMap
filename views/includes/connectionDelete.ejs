@@ -1,0 +1,33 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Connection: <b><%= model.CONN_ID %></h5>
+            </div>
+            <div class="modal-body">
+                <form action="/connectionDelete/<%= model.CONN_ID %>" method="post">
+                <input type="sourceApp" id="sourceApp" class="form-control mb-4" name="sourceApp" placeholder="Source Application" value="<%= model.SOURCE_ASSET_NAME %>" disabled>
+                <input type="destApp" id="destApp" class="form-control mb-4" name="destApp" placeholder="Destination Application" value="<%= model.DEST_ASSET_NAME %>" disabled>
+                <input type="proto" id="proto" class="form-control mb-4" name="proto" placeholder="Protocol Used" value="<%= model.PROTOCOL %>" disabled>
+                <input type="enc" id="enc" class="form-control mb-4" name="enc" placeholder="Encryption Type" value="<%= model.ENCRYPTION %>" disabled>
+                <input type="serverAuth" id="serverAuth" class="form-control mb-4" name="serverAuth" placeholder="Server Authentication" value="<%= model.SERVER_AUTHENTICATION %>" disabled>
+                <input type="clientAuth" id="clientAuth" class="form-control mb-4" name="clientAuth" placeholder="Client Authentication" value="<%= model.CLIENT_AUTHENTICATION %>" disabled>
+                <input type="clientAuthz" id="clientAuthz" class="form-control mb-4" name="clientAuthz" placeholder="Client Authorisation" value="<%= model.CLIENT_AUTHORISATION %>" disabled>
+                <input type="serverCRL" id="serverCRL" class="form-control mb-4" name="serverCRL" placeholder="Server CRL" value="<%= model.SERVER_CRL %>" disabled>
+                <input type="clientCRL" id="clientCRL" class="form-control mb-4" name="clientCRL" placeholder="Client CRL" value="<%= model.CLIENT_CRL %>" disabled>
+                <input type="desc" id="desc" class="form-control mb-4" name="desc" placeholder="Description" value="<%= model.DESCRIPTION %>" disabled>
+
+                <div>
+                    <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
+                            onclick="closeModal()">Cancel</button></div>
+                    <div class="float-end"> <button type="submit" class="btn btn-danger btn-sm mx-2 my-2"
+                            onclick="closeModal()">Delete</button></div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+</div>

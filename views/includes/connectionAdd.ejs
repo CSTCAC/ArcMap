@@ -1,0 +1,50 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Connection</h5>
+            </div>
+            <div class="modal-body">
+                <form action="/connectionAdd/" method="post">
+                  
+                  
+                <select class="form-select mb-4" name="sourceApp" >
+                        <option selected>Select Source Asset</option>
+                        <% for (const a of assetModel) { %>
+                        <option value="<%= a.ASSET_ID %>"><%= a.ASSET_NAME %></option>
+                        <% } %>
+                </select>
+                
+                <select class="form-select mb-4" name="destApp" >
+                    <option selected>Select Destination Asset</option>
+                    <% for (const a of assetModel) { %>
+                    <option value="<%= a.ASSET_ID %>"><%= a.ASSET_NAME %></option>
+                    <% } %>
+                </select>
+
+                <input type="proto" id="proto" class="form-control mb-4" name="proto" placeholder="Protocol Used">
+                <input type="enc" id="enc" class="form-control mb-4" name="enc" placeholder="Encryption Type">
+                <input type="serverAuth" id="serverAuth" class="form-control mb-4" name="serverAuth" placeholder="Server Authentication">
+                <input type="clientAuth" id="clientAuth" class="form-control mb-4" name="clientAuth" placeholder="Client Authentication">
+                <input type="clientAuthz" id="clientAuthz" class="form-control mb-4" name="clientAuthz" placeholder="Client Authorisation">
+                <input type="serverCRL" id="serverCRL" class="form-control mb-4" name="serverCRL" placeholder="Server CRL">
+                <input type="clientCRL" id="clientCRL" class="form-control mb-4" name="clientCRL" placeholder="Client CRL">
+                <input type="desc" id="desc" class="form-control mb-4" name="desc" placeholder="Description">
+                    
+
+
+
+                        <div>
+                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
+                                onclick="closeModal()">Cancel</button></div>
+                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
+                                onclick="closeModal()">Add</button></div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Asset: <b><%= model.ASSET_ID %></b></h5>
+            </div>
+            <div class="modal-body">
+
+                <form action="/assetEdit/<%= model.ASSET_ID %>" method="post">
+                    <input type="assetName" name="assetName" id="assetName" class="form-control mb-4"
+                        placeholder="Name of Asset" value="<%= model.ASSET_NAME %>">
+                    <input type="zoneName" name="zoneName" id="zoneName" class="form-control mb-4"
+                        placeholder="Name of Zone" value="<%= model.ASSET_ZONE %>">
+                    <textarea type="description" name="description" id="description" class="form-control mb-4"
+                        placeholder="Description of Asset"><%= model.DESCRIPTION %></textarea>
+                    
+                        <div>
+                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
+                                onclick="closeModal()">Cancel</button></div>
+                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
+                                onclick="closeModal()">Edit</button></div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
