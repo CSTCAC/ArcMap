@@ -1,49 +1,46 @@
 <div class="modal-box">
-    <h3 class="font-bold text-lg">Add New Connection</h3>
+    <p class="font-bold text-lg">Add New Connection</h3>
     <form action="/connectionAdd/" method="post">
-
-
-        <select class="form-select mb-4" name="sourceApp">
-            <option selected>Select Source Asset</option>
+        <i><span class="label-text text-xs">Source Asset</span></i>
+        <select class="form-select input input-accent w-full" name="sourceApp" required>
+            <option selected>Select Asset</option>
             <% for (const a of assetModel) { %>
                 <option value="<%= a.ASSET_ID %>">
                     <%= a.ASSET_NAME %>
                 </option>
                 <% } %>
         </select>
-
-        <select class="form-select mb-4" name="destApp">
-            <option selected>Select Destination Asset</option>
+        <i><span class="label-text text-xs">Destination Asset</span></i>
+        <select class="form-select input input-accent w-full " name="destApp" required>
+            <option selected>Select Asset</option>
             <% for (const a of assetModel) { %>
                 <option value="<%= a.ASSET_ID %>">
                     <%= a.ASSET_NAME %>
                 </option>
                 <% } %>
         </select>
-
-        <input type="proto" id="proto" class="form-control mb-4" name="proto" placeholder="Protocol Used">
-        <input type="enc" id="enc" class="form-control mb-4" name="enc" placeholder="Encryption Type">
-        <input type="serverAuth" id="serverAuth" class="form-control mb-4" name="serverAuth"
-            placeholder="Server Authentication">
-        <input type="clientAuth" id="clientAuth" class="form-control mb-4" name="clientAuth"
-            placeholder="Client Authentication">
-        <input type="clientAuthz" id="clientAuthz" class="form-control mb-4" name="clientAuthz"
-            placeholder="Client Authorisation">
-        <input type="serverCRL" id="serverCRL" class="form-control mb-4" name="serverCRL" placeholder="Server CRL">
-        <input type="clientCRL" id="clientCRL" class="form-control mb-4" name="clientCRL" placeholder="Client CRL">
-        <input type="desc" id="desc" class="form-control mb-4" name="desc" placeholder="Description">
-
-
-
-
-        <div class="modal-action">
-            <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
+        <i><span class="label-text text-xs">Protocol</span></i>
+        <input type="proto" id="proto" class="input input-accent w-full " name="proto">
+        <i><span class="label-text text-xs">Encryption Used</span></i>
+        <input type="enc" id="enc" class="input input-accent w-full " name="enc">
+        <i><span class="label-text text-xs">Server Authentication</span></i>
+        <input type="serverAuth" id="serverAuth" class="input input-accent w-full " name="serverAuth">
+        <i><span class="label-text text-xs">Client Authentication</span></i>
+        <input type="clientAuth" id="clientAuth" class="input input-accent w-full " name="clientAuth">
+        <i><span class="label-text text-xs">Client Authorisation</span></i>
+        <input type="clientAuthz" id="clientAuthz" class="input input-accent w-full " name="clientAuthz">
+        <i><span class="label-text text-xs">Server CRL</span></i>
+        <input type="serverCRL" id="serverCRL" class="input input-accent w-full " name="serverCRL">
+        <i><span class="label-text text-xs">Client CRL</span></i>
+        <input type="clientCRL" id="clientCRL" class="input input-accent w-full " name="clientCRL">
+        <i><span class="label-text text-xs">Description of Connection</span></i>
+        <input type="desc" id="desc" class="input input-accent w-full " name="desc">
+        <div class="modal-action my-6">
+            <div class="absolute bottom-2 left-2 "><label for="my-dataModal"
                     class="btn btn-warning btn-sm">Cancel</label>
             </div>
-            <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
+            <div class="absolute bottom-2 right-2  "><button id="subm" type="submit"
                     class="btn btn-success btn-sm">Add</button></div>
         </div>
     </form>
-
-
 </div>

@@ -1,19 +1,19 @@
 <div class="modal-box">
-    <h3 class="font-bold text-lg">Add New Asset</h3>
-
+    <p class="font-bold text-lg mb-6">Add New Asset</h3>
     <form action="/assetAdd" method="post">
-        <input type="assetName" name="assetName" id="assetName" class="form-control mb-4" placeholder="Name of Asset">
-
-        <input type="zoneName" name="zoneName" id="zoneName" class="form-control mb-4" placeholder="Name of Zone">
-        
-        <textarea type="description" name="description" id="description" class="form-control mb-4"
-            placeholder="Description of Asset"></textarea>
-        <div class="modal-action">
-            <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
-                    class="btn btn-warning btn-sm">Cancel</label>
+        <i><span class="label-text text-xs">Asset Name</span></i>
+        <input type="assetName" name="assetName" id="assetName" class="input input-accent w-full">
+        <i><span class="label-text text-xs">Asset Zone</span></i>
+        <input type="zoneName" name="zoneName" id="zoneName" class="input input-accent w-full">
+        <i><span class="label-text text-xs">Asset Description</span></i>
+        <textarea type="description" name="description" id="description" class="input input-accent w-full"></textarea>
+        <div class="modal-action my-6">
+            <div class="absolute bottom-0 left-2 mb-2">
+                <label for="my-dataModal" class="btn btn-warning btn-sm">Cancel</label>
             </div>
-            <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
-                    class="btn btn-success btn-sm">Add</button></div>
+            <div class="absolute bottom-0 right-2 mb-2 ">
+                <button id="subm" type="submit" class="btn btn-success btn-sm">Add</button>
+            </div>
         </div>
     </form>
 </div>

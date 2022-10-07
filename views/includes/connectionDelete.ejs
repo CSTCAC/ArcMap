@@ -1,39 +1,44 @@
 <div class="modal-box">
-    <h3 class="font-bold text-lg">Delete Connection: <b>
+    <p class="font-bold text-lg">Delete Connection: <b>
             <%= model.CONN_ID %>
-    </h3>
-
-
-    <form action="/connectionDelete/<%= model.CONN_ID %>" method="post">
-        <input type="sourceApp" id="sourceApp" class="form-control mb-4" name="sourceApp"
-            placeholder="Source Application" value="<%= model.SOURCE_ASSET_NAME %>" disabled>
-        <input type="destApp" id="destApp" class="form-control mb-4" name="destApp"
-            placeholder="Destination Application" value="<%= model.DEST_ASSET_NAME %>" disabled>
-        <input type="proto" id="proto" class="form-control mb-4" name="proto" placeholder="Protocol Used"
-            value="<%= model.PROTOCOL %>" disabled>
-        <input type="enc" id="enc" class="form-control mb-4" name="enc" placeholder="Encryption Type"
-            value="<%= model.ENCRYPTION %>" disabled>
-        <input type="serverAuth" id="serverAuth" class="form-control mb-4" name="serverAuth"
-            placeholder="Server Authentication" value="<%= model.SERVER_AUTHENTICATION %>" disabled>
-        <input type="clientAuth" id="clientAuth" class="form-control mb-4" name="clientAuth"
-            placeholder="Client Authentication" value="<%= model.CLIENT_AUTHENTICATION %>" disabled>
-        <input type="clientAuthz" id="clientAuthz" class="form-control mb-4" name="clientAuthz"
-            placeholder="Client Authorisation" value="<%= model.CLIENT_AUTHORISATION %>" disabled>
-        <input type="serverCRL" id="serverCRL" class="form-control mb-4" name="serverCRL" placeholder="Server CRL"
-            value="<%= model.SERVER_CRL %>" disabled>
-        <input type="clientCRL" id="clientCRL" class="form-control mb-4" name="clientCRL" placeholder="Client CRL"
-            value="<%= model.CLIENT_CRL %>" disabled>
-        <input type="desc" id="desc" class="form-control mb-4" name="desc" placeholder="Description"
-            value="<%= model.DESCRIPTION %>" disabled>
-
-        <div class="modal-action">
-            <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
-                    class="btn btn-warning btn-sm">Cancel</label>
-            </div>
-            <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
-                    class="btn btn-warning btn-sm">Delete</button></div>
-        </div>
-    </form>
-
-
+                </h3>
+                <form action="/connectionDelete/<%= model.CONN_ID %>" method="post">
+                    <i><span class="label-text text-xs">Source Asset</span></i>
+                    <input type="sourceApp" id="sourceApp" class="input input-accent w-full" name="sourceApp"
+                        value="<%= model.SOURCE_ASSET_NAME %>" disabled>
+                    <i><span class="label-text text-xs">Destination Asset</span></i>
+                    <input type="destApp" id="destApp" class="input input-accent w-full" name="destApp"
+                        value="<%= model.DEST_ASSET_NAME %>" disabled>
+                    <i><span class="label-text text-xs">Protocol</span></i>
+                    <input type="proto" id="proto" class="input input-accent w-full" name="proto"
+                        value="<%= model.PROTOCOL %>" disabled>
+                    <i><span class="label-text text-xs">Encryption Used</span></i>
+                    <input type="enc" id="enc" class="input input-accent w-full" name="enc"
+                        value="<%= model.ENCRYPTION %>" disabled>
+                    <i><span class="label-text text-xs">Server Authentication</span></i>
+                    <input type="serverAuth" id="serverAuth" class="input input-accent w-full" name="serverAuth"
+                        value="<%= model.SERVER_AUTHENTICATION %>" disabled>
+                    <i><span class="label-text text-xs">Client Authentication</span></i>
+                    <input type="clientAuth" id="clientAuth" class="input input-accent w-full" name="clientAuth"
+                        value="<%= model.CLIENT_AUTHENTICATION %>" disabled>
+                    <i><span class="label-text text-xs">Client Authorisation</span></i>
+                    <input type="clientAuthz" id="clientAuthz" class="input input-accent w-full" name="clientAuthz"
+                        value="<%= model.CLIENT_AUTHORISATION %>" disabled>
+                    <i><span class="label-text text-xs">Server CRL</span></i>
+                    <input type="serverCRL" id="serverCRL" class="input input-accent w-full" name="serverCRL"
+                        value="<%= model.SERVER_CRL %>" disabled>
+                    <i><span class="label-text text-xs">Client CRL</span></i>
+                    <input type="clientCRL" id="clientCRL" class="input input-accent w-full" name="clientCRL"
+                        value="<%= model.CLIENT_CRL %>" disabled>
+                    <i><span class="label-text text-xs">Description of Connection</span></i>
+                    <input type="desc" id="desc" class="input input-accent w-full" name="desc"
+                        value="<%= model.DESCRIPTION %>" disabled>
+                    <div class="modal-action">
+                        <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
+                                class="btn btn-warning btn-sm">Cancel</label>
+                        </div>
+                        <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
+                                class="btn btn-warning btn-sm">Delete</button></div>
+                    </div>
+                </form>
 </div>

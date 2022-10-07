@@ -1,17 +1,18 @@
 <div class="modal-box">
-    <h3 class="font-bold text-lg">Edit Asset: <b>
+    <p class="font-bold text-lg mb-6">Edit Asset: <b>
             <%= model.ASSET_ID %>
-    </h3>
-
+    </p>
     <form action="/assetEdit/<%= model.ASSET_ID %>" method="post">
-        <input type="assetName" name="assetName" id="assetName" class="form-control mb-4" placeholder="Name of Asset"
+        <i><span class="label-text text-xs">Asset Name</span></i>
+        <input type="assetName" name="assetName" id="assetName" class="input input-accent w-full"
             value="<%= model.ASSET_NAME %>">
-        <input type="zoneName" name="zoneName" id="zoneName" class="form-control mb-4" placeholder="Name of Zone"
+        <i><span class="label-text text-xs">Asset Zone</span></i>
+        <input type="zoneName" name="zoneName" id="zoneName" class="input input-accent w-full"
             value="<%= model.ASSET_ZONE %>">
-        <textarea type="description" name="description" id="description" class="form-control mb-4"
-            placeholder="Description of Asset"><%= model.DESCRIPTION %></textarea>
-
-        <div class="modal-action">
+        <i><span class="label-text text-xs">Asset Description</span></i>
+        <textarea type="description" name="description" id="description"
+            class="input input-accent w-full"><%= model.DESCRIPTION %></textarea>
+        <div class="modal-action my-6">
             <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
                     class="btn btn-warning btn-sm">Cancel</label>
             </div>

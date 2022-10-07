@@ -1,16 +1,18 @@
 <div class="modal-box">
-    <h3 class="font-bold text-lg">Delete Asset: <b>
+    <p class="font-bold text-lg mb-6">Delete Asset: <b>
             <%= model.ASSET_ID %>
-    </h3>
+    </p>
     <form action="/assetDelete/<%= model.ASSET_ID %>" method="post">
-        <input type="assetName" name="assetName" disabled id="assetName" class="form-control mb-4"
+        <i><span class="label-text text-xs">Asset Name</span></i>
+        <input type="assetName" name="assetName" disabled id="assetName" class="input input-accent w-full"
             value="<%= model.ASSET_NAME %>"">
-                    <input type=" zoneName" name="zoneName" disabled id="zoneName" class="form-control mb-4" disabled
+            <i><span class=" label-text text-xs">Asset Zone</span></i>
+        <input type=" zoneName" name="zoneName" disabled id="zoneName" class="input input-accent w-full" disabled
             value="<%= model.ASSET_ZONE %>">
-        <textarea type="description" name="description" id="description" class="form-control mb-4"
+        <i><span class="label-text text-xs">Asset Description</span></i>
+        <textarea type="description" name="description" id="description" class="input input-accent w-full"
             disabled><%= model.DESCRIPTION %></textarea>
-
-        <h5>WARNING</h5> - Deleting an asset will also delete ALL associated connections.
+        <p class="text-red-600">WARNING- Deleting an asset will also delete ALL associated connections.</p>
         <div class="modal-action">
             <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
                     class="btn btn-warning btn-sm">Cancel</label>
