@@ -1,4 +1,4 @@
-//-------------------- Declarations ----------------------
+//-------------------- Declarations ----------------------TEST
 const express = require("express");
 const path = require("path");
 const sqlite = require("./db");
