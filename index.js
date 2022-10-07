@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "files")));
 app.use(efu({
-    limits: { fileSize: 50 * 1024 * 1024 },
+    limits: { fileSize: 5000 * 1024 * 1024 },
     abortOnLimit: true,
     }));
 
@@ -150,6 +150,7 @@ app.get('/download/:fn', function(req, res){
     const file = "./files/"+fn;
     res.set({'Location': "/"});
     res.download(file); // Set disposition and send it.
+
   });
 
 //load map
