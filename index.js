@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "files")));
 app.use(efu({
     limits: { fileSize: 5000 * 1024 * 1024 },
-    abortOnLimit: true,
+    abortOnLimit: true
 }));
 
 // --- middleware configuration
