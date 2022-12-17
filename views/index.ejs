@@ -1,196 +1,169 @@
 <%- include ("_header") -%>
 
-<div class="card bg-slate-100	shadow-lg shadow-grey mx-2 my-2 text-base ">
-  <div class="mermaid" style="text-align: center;">
-    flowchart LR
-    <% for (const az of model3) { %>
-      subgraph <%= (az.ASSET_ZONE).replace(/\s+/g,"_") %>
-      <%= (az.ASSET).replace(/\s+/g,"_") %>
-      end
-    <% } %>
-    <% for (const conn of model) { %>
-      <%= (conn.SOURCE_ASSET_NAME).replace(/\s+/g,"_") %>--<%= (conn.CONN_ID) +  " <br> " + (conn.PROTOCOL).replace(/\s+/g,"_") + "  " + (conn.ENCRYPTION).replace(/\s+/g,"_") %>--> <%= (conn.DEST_ASSET_NAME).replace(/\s+/g,"_") %>
-    <% } %>
+  <div class="card bg-neutral 	shadow-lg shadow-grey mx-2 my-2 text-base ">
+    <div class="card bg-slate-200 shadow-lg shadow-grey mx-4 my-4 px-4 py-4">
+    <div class="mermaid" style="text-align: center;">
+      flowchart LR
+      <% for (const az of model3) { %>
+        subgraph <%= (az.ASSET_ZONE).replace(/\s+/g,"_") %>
+          <%= (az.ASSET).replace(/\s+/g,"_") %>
+            end
+            <% } %>
+              <% for (const conn of model) { %>
+                <%= (conn.SOURCE_ASSET_NAME).replace(/\s+/g,"_") %>--<%= (conn.CONN_ID) + " <br> " +
+                    (conn.PROTOCOL).replace(/\s+/g,"_") + "  " + (conn.ENCRYPTION).replace(/\s+/g,"_") %>--> <%=
+                      (conn.DEST_ASSET_NAME).replace(/\s+/g,"_") %>
+                      <% } %>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-</div>
-</div>
+  </div>
 
-<div class="card bg-slate-100 text-black shadow-lg shadow-grey mx-2 my-2">
-  <p class="my-2 mx-2">      <button 
-    hx-get="/connectionAdd/""
-    hx-target="#dataModal" 
-    hx-trigger="click"
-    class="btn btn-success btn-sm"
-    _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Add Connection</button></p>
-  <table class="table table-hover">
-<thead>
-  <tr class="text-xs hover w-auto p-3">
-    <th>Connection ID</th>
-    <th>Source<br>Application</th>
-    <th>Source<br>Application<br>Zone</th>
-    <th>Destination<br>Application</th>
-    <th>Destination<br>Application<br>Zone</th>
-    <th>Protocol</th>
-    <th>Encryption</th>
-    <th>Server<BR>Authentication</th>
-    <th>Client<BR>Authentication</th>
-    <th>Client<br>Authorisation</th>
-    <th>Server CRL</th>
-    <th>Client CRL</th>
-    <th>Description</th>
-    <th>Action</th>
-  </tr>
-</thead>
-<tbody>
-  <% for (const cn of model) { %>
-    <tr class="text-xs">
-      <td>
-        <%= cn.CONN_ID %>
-      </td>
-      <td>
-        <%= cn.SOURCE_ASSET_NAME %>
-      </td>
-      <td>
-        <%= cn.SOURCE_ASSET_ZONE %>
-      </td>
-      <td>
-        <%= cn.DEST_ASSET_NAME %>
-      </td>
-      <td>
-        <%= cn.DEST_ASSET_ZONE %>
-      </td>
-      <td>
-        <%= cn.PROTOCOL %>
-      </td>
-      <td>
-        <%= cn.ENCRYPTION %>
-      </td>
-      <td>
-        <%= cn.SERVER_AUTHENTICATION %>
-      </td>
-      <td>
-        <%= cn.CLIENT_AUTHENTICATION %>
-      </td>
-      <td>
-        <%= cn.CLIENT_AUTHORISATION %>
-      </td>
-      <td>
-        <%= cn.SERVER_CRL %>
-      </td>
-      <td>
-        <%= cn.CLIENT_CRL %>
-      </td>
-      <td>
-        <%= cn.DESCRIPTION %>
-      </td>
-      <td>
-        <button 
-        hx-get="/connectionClone/<%= cn.CONN_ID %>" 
-        hx-target="#dataModal" 
-        hx-trigger="click"
-        class="btn btn-success btn-sm"
-        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Clone</button>
-        <button 
-        hx-get="/connectionEdit/<%= cn.CONN_ID %>" 
-        hx-target="#dataModal" 
-        hx-trigger="click"
-        class="btn btn-warning btn-sm"
-        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Edit</button>
-        <button 
-        hx-get="/connectionDelete/<%= cn.CONN_ID %>" 
-        hx-target="#dataModal" 
-        hx-trigger="click"
-        class="btn btn-danger btn-sm"
-        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Delete</button>
-      </td>
-    <tr>
-      <% } %>
-</tbody>
-</table>
-</div>
-
-
-<div class="card bg-slate-100 text-black shadow-lg shadow-grey mx-2 my-2">
-  <table class="table table-hover">
+  <div class="card bg-neutral shadow-lg shadow-grey mx-2 my-2">
     <p class="my-2 mx-2">
-             <button 
-        hx-get="/assetAdd" 
-        hx-target="#dataModal" 
+
+      <label class="btn btn-sm btn-success" for="my-dataModal" hx-get="/connectionAdd" hx-target="#newMod"
         hx-trigger="click"
-        class="btn btn-success btn-sm"
-        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Add New Asset</button>
-     </p>
-  <thead>
-    
-   
-    <tr class="text-xs hover">
-      <th>Application ID</th>
-      <th>Application<br>Name</th>
-      <th>Trust<br>Zone</th>
-      <th>Description</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for (const al of model2) { %>
-      <tr class="text-xs">
-        <td>
-          <%= al.ASSET_ID %>
-        </td>
-        <td>
-          <%= al.ASSET_NAME %>
-        </td>
-        <td>
-          <%= al.ASSET_ZONE %>
-        </td>
-        <td>
-          <%= al.DESCRIPTION %>
-        </td>
-        
-        <td>
-          <button 
-        hx-get="/assetEdit/<%= al.ASSET_ID %>" 
-        hx-target="#dataModal" 
-        hx-trigger="click"
-        class="btn btn-warning btn-sm"
-        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Edit</button>
-        <button 
-        hx-get="/assetDelete/<%= al.ASSET_ID %>" 
-        hx-target="#dataModal" 
-        hx-trigger="click"
-        class="btn btn-danger btn-sm"
-        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Delete</button>
-        </td>
-      <tr>
-        <% } %>
-  </tbody>
-  </table>
+        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Add
+        Connection</label></a>
+    </p>
+
+    <div class="card bg-neutral shadow-lg shadow-grey mx-2 my-2">
+      <table class="table table-compact mx-2 my-2">
+        <thead>
+          <tr class="text-xs">
+            <th>Connection ID</th>
+            <th>Source<br>Application</th>
+            <th>Source<br>Application<br>Zone</th>
+            <th>Destination<br>Application</th>
+            <th>Destination<br>Application<br>Zone</th>
+            <th>Protocol</th>
+            <th>Encryption</th>
+            <th>Server<BR>Authentication</th>
+            <th>Client<BR>Authentication</th>
+            <th>Client<br>Authorisation</th>
+            <th>Server CRL</th>
+            <th>Client CRL</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for (const cn of model) { %>
+            <tr class="text-xs">
+              <td>
+                <%= cn.CONN_ID %>
+              </td>
+              <td>
+                <%= cn.SOURCE_ASSET_NAME %>
+              </td>
+              <td>
+                <%= cn.SOURCE_ASSET_ZONE %>
+              </td>
+              <td>
+                <%= cn.DEST_ASSET_NAME %>
+              </td>
+              <td>
+                <%= cn.DEST_ASSET_ZONE %>
+              </td>
+              <td>
+                <%= cn.PROTOCOL %>
+              </td>
+              <td>
+                <%= cn.ENCRYPTION %>
+              </td>
+              <td>
+                <%= cn.SERVER_AUTHENTICATION %>
+              </td>
+              <td>
+                <%= cn.CLIENT_AUTHENTICATION %>
+              </td>
+              <td>
+                <%= cn.CLIENT_AUTHORISATION %>
+              </td>
+              <td>
+                <%= cn.SERVER_CRL %>
+              </td>
+              <td>
+                <%= cn.CLIENT_CRL %>
+              </td>
+              <td>
+                <%= cn.DESCRIPTION %>
+              </td>
+              <td>
+                <label class="btn btn-success btn-xs" for="my-dataModal" hx-get="/connectionClone/<%= cn.CONN_ID %>"
+                  hx-target="#newMod" hx-trigger="click"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Clone</label>
+                <label class="btn btn-warning btn-xs" for="my-dataModal" hx-get="/connectionEdit/<%= cn.CONN_ID %>"
+                  hx-target="#newMod" hx-trigger="click"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Edit</label>
+                <label class="btn btn-danger btn-xs" for="my-dataModal" hx-get="/connectionDelete/<%= cn.CONN_ID %>"
+                  hx-target="#newMod" hx-trigger="click"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Delete</label>
+
+
+              </td>
+            <tr>
+              <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card bg-neutral shadow-lg shadow-grey mx-2 my-2">
+    <p class="my-2 mx-2">
+
+      <label class="btn btn-sm btn-success" for="my-dataModal" hx-get="/assetAdd" hx-target="#newMod" hx-trigger="click"
+        _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Add
+        Asset</label></a>
+    </p>
+
+    <div class="card bg-neutral shadow-lg shadow-grey mx-2 my-2">
+      <table class="table table-compact mx-2 my-2">
+        <thead>
+          <tr class="text-xs">
+            <th>Application ID</th>
+            <th>Application<br>Name</th>
+            <th>Trust<br>Zone</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for (const al of model2) { %>
+            <tr class="text-xs">
+              <td>
+                <%= al.ASSET_ID %>
+              </td>
+              <td>
+                <%= al.ASSET_NAME %>
+              </td>
+              <td>
+                <%= al.ASSET_ZONE %>
+              </td>
+              <td>
+                <%= al.DESCRIPTION %>
+              </td>
+              <td>
+                <label class="btn btn-warning btn-xs" for="my-dataModal" hx-get="/assetEdit/<%= al.ASSET_ID %>"
+                  hx-target="#newMod" hx-trigger="click"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Edit</label>
+                <label class="btn btn-danger btn-xs" for="my-dataModal" hx-get="/assetDelete/<%= al.ASSET_ID %>"
+                  hx-target="#newMod" hx-trigger="click"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Delete</label>
+              </td>
+            <tr>
+              <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <input type="checkbox" id="my-dataModal" class="modal-toggle" />
+  <div class="modal" id="newMod">
   </div>
 
 
-
-
-
-
-
-
-<div id="dataModal"></div>
-
-<script>
-function closeModal() {
-	var container = document.getElementById("dataModal")
-	var backdrop = document.getElementById("modal-backdrop")
-	var modal = document.getElementById("modal")
-
-	modal.classList.remove("show")
-	backdrop.classList.remove("show")
-
-	setTimeout(function() {
-		container.removeChild(backdrop)
-		container.removeChild(modal)
-	}, 200)
-}
-</script>
-
-<%- include ("_footer") -%>
+  <%- include ("_footer") -%>

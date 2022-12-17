@@ -1,49 +1,60 @@
-<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
-<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Connection: <b><%= model.CONN_ID %></h5>
-            </div>
-            <div class="modal-body">
+<div class="modal-box">
+    <p class="font-bold text-lg">Edit Connection: <b>
+            <%= model.CONN_ID %>
+                </h3>
                 <form action="/connectionEdit/<%= model.CONN_ID %>" method="post">
-                
-                    <select class="form-select mb-4" name="sourceApp" >
-                        <option value="<%= model.SOURCE_ASSET_ID %>" selected><%= model.SOURCE_ASSET_NAME %></option>
+                    <i><span class="label-text text-xs">Source Asset</span></i>
+                    <select class="form-select input input-accent w-full" name="sourceApp" required>
+                        <option value="<%= model.SOURCE_ASSET_ID %>" selected>
+                            <%= model.SOURCE_ASSET_NAME %>
+                        </option>
                         <% for (const a of assetModel) { %>
-                        <option value="<%= a.ASSET_ID %>"><%= a.ASSET_NAME %></option>
-                        <% } %>
-                </select>
-                
-                <select class="form-select mb-4" name="destApp" >
-                    <option value="<%= model.DEST_ASSET_ID %>" selected><%= model.DEST_ASSET_NAME %></option>
-                    <% for (const a of assetModel) { %>
-                    <option value="<%= a.ASSET_ID %>"><%= a.ASSET_NAME %></option>
-                    <% } %>
-                </select>
-
-                <input type="proto" id="proto" class="form-control mb-4" name="proto" placeholder="Protocol Used" value="<%= model.PROTOCOL %>">
-                <input type="enc" id="enc" class="form-control mb-4" name="enc" placeholder="Encryption Type" value="<%= model.ENCRYPTION %>">
-                <input type="serverAuth" id="serverAuth" class="form-control mb-4" name="serverAuth" placeholder="Server Authentication" value="<%= model.SERVER_AUTHENTICATION %>">
-                <input type="clientAuth" id="clientAuth" class="form-control mb-4" name="clientAuth" placeholder="Client Authentication" value="<%= model.CLIENT_AUTHENTICATION %>">
-                <input type="clientAuthz" id="clientAuthz" class="form-control mb-4" name="clientAuthz" placeholder="Client Authorisation" value="<%= model.CLIENT_AUTHORISATION %>">
-                <input type="serverCRL" id="serverCRL" class="form-control mb-4" name="serverCRL" placeholder="Server CRL" value="<%= model.SERVER_CRL %>">
-                <input type="clientCRL" id="clientCRL" class="form-control mb-4" name="clientCRL" placeholder="Client CRL" value="<%= model.CLIENT_CRL %>">
-                <input type="desc" id="desc" class="form-control mb-4" name="desc" placeholder="Description" value="<%= model.DESCRIPTION %>">
-                    
-
-
-
-                        <div>
-                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
-                                onclick="closeModal()">Cancel</button></div>
-                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
-                                onclick="closeModal()">Edit</button></div>
+                            <option value="<%= a.ASSET_ID %>">
+                                <%= a.ASSET_NAME %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <i><span class="label-text text-xs">Destination Asset</span></i>
+                    <select class="form-select input input-accent w-full " name="destApp" required>
+                        <option value="<%= model.DEST_ASSET_ID %>" selected>
+                            <%= model.DEST_ASSET_NAME %>
+                        </option>
+                        <% for (const a of assetModel) { %>
+                            <option value="<%= a.ASSET_ID %>">
+                                <%= a.ASSET_NAME %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <i><span class="label-text text-xs">Protocol</span></i>
+                    <input type="proto" id="proto" class="input input-accent w-full" name="proto"
+                        value="<%= model.PROTOCOL %>">
+                    <i><span class="label-text text-xs">Encryption Used</span></i>
+                    <input type="enc" id="enc" class="input input-accent w-full" name="enc"
+                        value="<%= model.ENCRYPTION %>">
+                    <i><span class="label-text text-xs">Server Authentication</span></i>
+                    <input type="serverAuth" id="serverAuth" class="input input-accent w-full" name="serverAuth"
+                        value="<%= model.SERVER_AUTHENTICATION %>">
+                    <i><span class="label-text text-xs">Client Authentication</span></i>
+                    <input type="clientAuth" id="clientAuth" class="input input-accent w-full" name="clientAuth"
+                        value="<%= model.CLIENT_AUTHENTICATION %>">
+                    <i><span class="label-text text-xs">Client Authorisation</span></i>
+                    <input type="clientAuthz" id="clientAuthz" class="input input-accent w-full" name="clientAuthz"
+                        value="<%= model.CLIENT_AUTHORISATION %>">
+                    <i><span class="label-text text-xs">Server CRL</span></i>
+                    <input type="serverCRL" id="serverCRL" class="input input-accent w-full" name="serverCRL"
+                        value="<%= model.SERVER_CRL %>">
+                    <i><span class="label-text text-xs">Client CRL</span></i>
+                    <input type="clientCRL" id="clientCRL" class="input input-accent w-full" name="clientCRL"
+                        value="<%= model.CLIENT_CRL %>">
+                    <i><span class="label-text text-xs">Description of Connection</span></i>
+                    <input type="desc" id="desc" class="input input-accent w-full" name="desc"
+                        value="<%= model.DESCRIPTION %>">
+                    <div class="modal-action">
+                        <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
+                                class="btn btn-warning btn-sm">Cancel</label>
+                        </div>
+                        <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
+                                class="btn btn-success btn-sm">Edit</button></div>
                     </div>
                 </form>
-
-
-            </div>
-        </div>
-    </div>
 </div>

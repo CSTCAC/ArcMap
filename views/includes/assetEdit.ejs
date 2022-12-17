@@ -1,30 +1,23 @@
-<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
-<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Edit Asset: <b><%= model.ASSET_ID %></b></h5>
+<div class="modal-box">
+    <p class="font-bold text-lg mb-6">Edit Asset: <b>
+            <%= model.ASSET_ID %>
+    </p>
+    <form action="/assetEdit/<%= model.ASSET_ID %>" method="post">
+        <i><span class="label-text text-xs">Asset Name</span></i>
+        <input type="assetName" name="assetName" id="assetName" class="input input-accent w-full"
+            value="<%= model.ASSET_NAME %>">
+        <i><span class="label-text text-xs">Asset Zone</span></i>
+        <input type="zoneName" name="zoneName" id="zoneName" class="input input-accent w-full"
+            value="<%= model.ASSET_ZONE %>">
+        <i><span class="label-text text-xs">Asset Description</span></i>
+        <textarea type="description" name="description" id="description"
+            class="input input-accent w-full"><%= model.DESCRIPTION %></textarea>
+        <div class="modal-action my-6">
+            <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
+                    class="btn btn-warning btn-sm">Cancel</label>
             </div>
-            <div class="modal-body">
-
-                <form action="/assetEdit/<%= model.ASSET_ID %>" method="post">
-                    <input type="assetName" name="assetName" id="assetName" class="form-control mb-4"
-                        placeholder="Name of Asset" value="<%= model.ASSET_NAME %>">
-                    <input type="zoneName" name="zoneName" id="zoneName" class="form-control mb-4"
-                        placeholder="Name of Zone" value="<%= model.ASSET_ZONE %>">
-                    <textarea type="description" name="description" id="description" class="form-control mb-4"
-                        placeholder="Description of Asset"><%= model.DESCRIPTION %></textarea>
-                    
-                        <div>
-                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
-                                onclick="closeModal()">Cancel</button></div>
-                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
-                                onclick="closeModal()">Edit</button></div>
-                    </div>
-                </form>
-
-
-            </div>
+            <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
+                    class="btn btn-warning btn-sm">Edit</button></div>
         </div>
-    </div>
+    </form>
 </div>

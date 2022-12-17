@@ -1,28 +1,13 @@
-<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
-<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Save Map</h5>
+<div class="modal-box">
+    <p class="font-bold text-lg mb-6">Open Map</p>
+    <form action="/mapLoad" method="post" encType="multipart/form-data">
+        <input type="file" id="customFile" class="input input-accent w-full px-3 py-1.5" name="file">
+        <div class="modal-action my-6">
+            <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
+                    class="btn btn-warning btn-sm">Cancel</label>
             </div>
-            <div class="modal-body">
-                <form action="/mapLoad" method="post" encType="multipart/form-data">
-                
-                    <label class="form-label" for="customFile">Default file input example</label>
-                    <input type="file" class="form-control" name="file" id="customFile" />                  
-
-
-
-                        <div>
-                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
-                                onclick="closeModal()">Cancel</button></div>
-                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
-                                onclick="closeModal()">Save</button></div>
-                    </div>
-                </form>
-
-
-            </div>
+            <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit"
+                    class="btn btn-success btn-sm">Load</button></div>
         </div>
-    </div>
+    </form>
 </div>

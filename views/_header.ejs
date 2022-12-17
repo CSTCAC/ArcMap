@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dracula">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Simple Architechture Mapping</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
-        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
-        crossorigin="anonymous"></script>
-<style>
-    *
-{
-    font-size: 0.6vw;
-}
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            font-size: 0.6vw;
+        }
+        #subm {
+            background-color: #36D399;
+        }
+    </style>
 
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">ArchMap</a>
@@ -37,26 +38,25 @@
                         class="btn btn-outline-dark mt-1 mr-2 btn-sm"
                         _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">New Map</button>
                     </li>
-
                     <li class="nav-item">
                         <button 
                         hx-get="/mapLoad/" 
                         hx-target="#dataModal" 
                         hx-trigger="click"
-                        class="btn btn-outline-dark mt-1 mr-2 btn-sm"
+                        class="btn btn-success btn-sm"
                         _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Load Map</button>
                     </li>
-
                     <li class="nav-item">
                         <button 
                         hx-get="/mapSave/" 
                         hx-target="#dataModal" 
                         hx-trigger="click"
-                        class="btn btn-outline-dark mt-1 mr-2 btn-sm"
+                        class="btn btn-success btn-sm"
                         _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Save Map</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Download Report</a>
+                        <a class="nav-link" href="#">Downlaod Map</a>
+                        
                     </li>
                 </ul>
             </div>

@@ -1,27 +1,13 @@
-<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
-<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Save Map</h5>
+<div class="modal-box">
+    <p class="font-bold text-lg mb-6">Save and Dowload Map</p>
+    <form action="/mapSave" method="post">
+        <input type="fn" id="fn" class="input input-accent w-full" name="fn" placeholder="Map Name - without extension">
+        <div class="modal-action my-6">
+            <div class="absolute bottom-0 left-2 mb-2"><label for="my-dataModal"
+                    class="btn btn-warning btn-sm">Cancel</label>
             </div>
-            <div class="modal-body">
-                <form action="/mapSave" method="post">
-                
-                    <input type="fn" id="fn" class="form-control mb-4" name="fn" placeholder="Map Name - without extension">                    
-
-
-
-                        <div>
-                        <div class="float-start"><button type="button" class="btn btn-warning btn-sm mx-2 my-2"
-                                onclick="closeModal()">Cancel</button></div>
-                        <div class="float-end"> <button type="submit" class="btn btn-success btn-sm mx-2 my-2"
-                                onclick="closeModal()">Save</button></div>
-                    </div>
-                </form>
-
-
-            </div>
+            <div class="absolute bottom-0 right-2 mb-2 "><button id="subm" type="submit" class="btn btn-success btn-sm"
+                    onclick="window.location.reload()">Save</button></div>
         </div>
-    </div>
+    </form>
 </div>
