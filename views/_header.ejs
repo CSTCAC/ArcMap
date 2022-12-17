@@ -19,7 +19,6 @@
 </style>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">ArchMap</a>
@@ -38,25 +37,26 @@
                         class="btn btn-outline-dark mt-1 mr-2 btn-sm"
                         _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">New Map</button>
                     </li>
+
                     <li class="nav-item">
                         <button 
                         hx-get="/mapLoad/" 
                         hx-target="#dataModal" 
                         hx-trigger="click"
-                        class="btn btn-success btn-sm"
+                        class="btn btn-outline-dark mt-1 mr-2 btn-sm"
                         _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Load Map</button>
                     </li>
+
                     <li class="nav-item">
                         <button 
                         hx-get="/mapSave/" 
                         hx-target="#dataModal" 
                         hx-trigger="click"
-                        class="btn btn-success btn-sm"
+                        class="btn btn-outline-dark mt-1 mr-2 btn-sm"
                         _="on htmx:afterOnLoad wait 10ms then add .show to #modal then add .show to #modal-backdrop">Save Map</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Downlaod Map</a>
-                        
+                        <a class="nav-link" href="#">Download Report</a>
                     </li>
                 </ul>
             </div>
