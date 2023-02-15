@@ -1,46 +1,98 @@
-<div class="modal-box">
-    <p class="font-bold text-lg">Add New Connection</h3>
+<div class="modal-header">
+    <h1 class="modal-title fs-5">Add New Connection</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
     <form action="/connectionAdd/" method="post">
-        <i><span class="label-text text-xs">Source Asset</span></i>
-        <select class="form-select input input-accent w-full" name="sourceApp" required>
-            <option selected>Select Asset</option>
-            <% for (const a of assetModel) { %>
-                <option value="<%= a.ASSET_ID %>">
-                    <%= a.ASSET_NAME %>
-                </option>
-                <% } %>
-        </select>
-        <i><span class="label-text text-xs">Destination Asset</span></i>
-        <select class="form-select input input-accent w-full " name="destApp" required>
-            <option selected>Select Asset</option>
-            <% for (const a of assetModel) { %>
-                <option value="<%= a.ASSET_ID %>">
-                    <%= a.ASSET_NAME %>
-                </option>
-                <% } %>
-        </select>
-        <i><span class="label-text text-xs">Protocol</span></i>
-        <input type="proto" id="proto" class="input input-accent w-full " name="proto">
-        <i><span class="label-text text-xs">Encryption Used</span></i>
-        <input type="enc" id="enc" class="input input-accent w-full " name="enc">
-        <i><span class="label-text text-xs">Server Authentication</span></i>
-        <input type="serverAuth" id="serverAuth" class="input input-accent w-full " name="serverAuth">
-        <i><span class="label-text text-xs">Client Authentication</span></i>
-        <input type="clientAuth" id="clientAuth" class="input input-accent w-full " name="clientAuth">
-        <i><span class="label-text text-xs">Client Authorisation</span></i>
-        <input type="clientAuthz" id="clientAuthz" class="input input-accent w-full " name="clientAuthz">
-        <i><span class="label-text text-xs">Server CRL</span></i>
-        <input type="serverCRL" id="serverCRL" class="input input-accent w-full " name="serverCRL">
-        <i><span class="label-text text-xs">Client CRL</span></i>
-        <input type="clientCRL" id="clientCRL" class="input input-accent w-full " name="clientCRL">
-        <i><span class="label-text text-xs">Description of Connection</span></i>
-        <input type="desc" id="desc" class="input input-accent w-full " name="desc">
-        <div class="modal-action my-6">
-            <div class="absolute bottom-2 left-2 "><label for="my-dataModal"
-                    class="btn btn-warning btn-sm">Cancel</label>
+
+        <div class="form-group row mb-1">
+            <label for="sourceApp" class="col-sm-2 col-form-label">Source Asset</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="sourceApp" required>
+                    <option selected>Select Asset</option>
+                    <% for (const a of assetModel) { %>
+                        <option value="<%= a.ASSET_ID %>">
+                            <%= a.ASSET_NAME %>
+                        </option>
+                        <% } %>
+                </select>
             </div>
-            <div class="absolute bottom-2 right-2  "><button id="subm" type="submit"
-                    class="btn btn-success btn-sm">Add</button></div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="destApp" class="col-sm-2 col-form-label">Destination Asset</label>
+            <div class="col-sm-10">
+                <select class="form-select" name="destApp" required>
+                    <option selected>Select Asset</option>
+                    <% for (const a of assetModel) { %>
+                        <option value="<%= a.ASSET_ID %>">
+                            <%= a.ASSET_NAME %>
+                        </option>
+                        <% } %>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="proto" class="col-sm-2 col-form-label">Protocol</label>
+            <div class="col-sm-10">
+                <input type="proto" name="proto" id="proto" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Encryption Used</label>
+            <div class="col-sm-10">
+                <input type="enc" name="enc" id="enc" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Server Authentication</label>
+            <div class="col-sm-10">
+                <input type="serverAuth" name="serverAuth" id="serverAuth" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Client Authentication</label>
+            <div class="col-sm-10">
+                <input type="clientAuth" name="clientAuth" id="clientAuth" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Client Authorisation</label>
+            <div class="col-sm-10">
+                <input type="clientAuthz" name="clientAuthz" id="clientAuthz" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Server CRL</label>
+            <div class="col-sm-10">
+                <input type="serverCRL" name="serverCRL" id="serverCRL" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Client CRL</label>
+            <div class="col-sm-10">
+                <input type="clientCRL" name="clientCRL" id="clientCRL" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group row mb-1">
+            <label for="enc" class="col-sm-2 col-form-label">Connection Description</label>
+            <div class="col-sm-10">
+                <input type="desc" name="desc" id="desc" class="form-control">
+            </div>
+        </div>
+
+        <div class="modal-footer mt-4">
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-success">Add</button>
         </div>
     </form>
 </div>
