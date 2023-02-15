@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16.19-bullseye-slim
 RUN mkdir -p ./app && chown node ./app
 WORKDIR /app
 COPY package*.json .
