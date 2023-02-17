@@ -2,200 +2,237 @@
 
 
 
+  <div class="row mx-2 h-10">
 
-  <div class="card  mx-2 my-2 ">
-    <div class="card-header">
-      Arcitechture Map
+
+    <div class="col-md-5">
+      <div class="card mx-2 my-2" id="mapPanel">
+        <div class="card-header">
+          Arcitechture Map
+        </div>
+
+        <div class="card mx-2 my-2 px-2 py-2" style="border: none;">
+          <div class="mermaid" style="text-align: center;">
+            flowchart TD
+            <% for (const az of model3) { %>
+              subgraph <%= (az.ASSET_ZONE).replace(/\s+/g,"_") %>
+                <%= (az.ASSET).replace(/\s+/g,"_") %>
+                  end
+                  <% } %>
+                    <% for (const conn of model) { %>
+                      <%= (conn.SOURCE_ASSET_NAME).replace(/\s+/g,"_") %>--<%= (conn.CONN_ID) + " <br> " +
+                          (conn.PROTOCOL).replace(/\s+/g,"_") + "  " + (conn.ENCRYPTION).replace(/\s+/g,"_") %>--> <%=
+                            (conn.DEST_ASSET_NAME).replace(/\s+/g,"_") %>
+                            <% } %>
+          </div>
+          <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+
+            mermaid.initialize({
+              startOnLoad: true,
+              themeVariables: {
+                'primaryColor': '#BB2528',
+                'primaryTextColor': '#fff',
+                'primaryBorderColor': '#7C0000',
+                'lineColor': '#F8B229',
+                'secondaryColor': '#006100',
+                'tertiaryColor': '#fff'
+              }
+            });
+
+
+          </script>
+        </div>
+      </div>
     </div>
-    
-    <div class="card mx-4 my-4 px-4 py-4">
-    <div class="mermaid" style="text-align: center;">
-      flowchart LR
-      <% for (const az of model3) { %>
-        subgraph <%= (az.ASSET_ZONE).replace(/\s+/g,"_") %>
-          <%= (az.ASSET).replace(/\s+/g,"_") %>
-            end
-            <% } %>
-              <% for (const conn of model) { %>
-                <%= (conn.SOURCE_ASSET_NAME).replace(/\s+/g,"_") %>--<%= (conn.CONN_ID) + " <br> " +
-                    (conn.PROTOCOL).replace(/\s+/g,"_") + "  " + (conn.ENCRYPTION).replace(/\s+/g,"_") %>--> <%=
-                      (conn.DEST_ASSET_NAME).replace(/\s+/g,"_") %>
-                      <% } %>
-    </div>
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-  </div>
-  </div>
 
+    <div class="col-md-7">
+      <div class="span">
+        <div class="card  mx-2 my-2 ">
+          <div class="card-header">
 
-
-  
-  <div class="card  mx-2 my-2 ">
-    <div class="card-header">
-      Connections
-    </div>
-    <p class="my-2 mx-2">
-
-        <button type="button" class="btn btn-success "  hx-get="/connectionAdd" hx-target="#modal-body" 
-        _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Add Connection</button>
-
-    </p>
-
-    <div class="card  mx-2 my-2">
-      <table class="table table-sm table-hover">
-        <thead>
-          <tr class="text-xs">
-            <th class="d-none d-lg-table-cell">Connection ID</th>
-            <th>Source Application</th>
-            <th class="d-none d-lg-table-cell">Source Application Zone</th>
-            <th>Destination Application</th>
-            <th class="d-none d-lg-table-cell">Destination Application Zone</th>
-            <th>Protocol</th>
-            <th class="d-none d-md-table-cell">Encryption</th>
-            <th class="d-none d-xl-table-cell">Server Authentication</th>
-            <th class="d-none d-xl-table-cell">Client Authentication</th>
-            <th class="d-none d-xl-table-cell">Client Authorisation</th>
-            <th class="d-none d-xxl-table-cell">Server CRL</th>
-            <th class="d-none d-xxl-table-cell">Client CRL</th>
-            <th class="d-none d-xxl-table-cell">Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% for (const cn of model) { %>
-            <tr class="text-xs">
-              <td class="d-none d-lg-table-cell">
-                <%= cn.CONN_ID %>
-              </td>
-              <td>
-                <%= cn.SOURCE_ASSET_NAME %>
-              </td>
-              <td class="d-none d-lg-table-cell">
-                <%= cn.SOURCE_ASSET_ZONE %>
-              </td>
-              <td>
-                <%= cn.DEST_ASSET_NAME %>
-              </td>
-              <td class="d-none d-lg-table-cell">
-                <%= cn.DEST_ASSET_ZONE %>
-              </td>
-              <td>
-                <%= cn.PROTOCOL %>
-              </td>
-              <td class="d-none d-md-table-cell">
-                <%= cn.ENCRYPTION %>
-              </td>
-              <td class="d-none d-xl-table-cell">
-                <%= cn.SERVER_AUTHENTICATION %>
-              </td>
-              <td class="d-none d-xl-table-cell">
-                <%= cn.CLIENT_AUTHENTICATION %>
-              </td>
-              <td class="d-none d-xl-table-cell">
-                <%= cn.CLIENT_AUTHORISATION %>
-              </td>
-              <td class="d-none d-xxl-table-cell">
-                <%= cn.SERVER_CRL %>
-              </td>
-              <td class="d-none d-xxl-table-cell">
-                <%= cn.CLIENT_CRL %>
-              </td>
-              <td class="d-none d-xxl-table-cell">
-                <%= cn.DESCRIPTION %>
-              </td>
-              <td>
-                                
-                  <button type="button" class="btn btn-success "  hx-get="/connectionClone/<%= cn.CONN_ID %>" hx-target="#modal-body" 
-                    _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      Clone
-                    </button>
-                
-                  <button type="button" class="btn btn-warning "  hx-get="/connectionEdit/<%= cn.CONN_ID %>" hx-target="#modal-body" 
-                  _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Edit
-                  </button>
-                
-                  <button type="button" class="btn btn-danger "  hx-get="/connectionDelete/<%= cn.CONN_ID %>" hx-target="#modal-body" 
-                    _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      Delete
-                    </button>
-                
-              </td>
-            <tr>
-              <% } %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="card  mx-2 my-2 ">
-    <div class="card-header">
-      Assets
-    </div>
-    <p class="my-2 mx-2">
-
-        <button type="button" class="btn btn-success "  hx-get="/assetAdd" hx-target="#modal-body" 
-        _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Add Asset
-        </button>
-        
-    </p>
-
-    <div class="card  mx-2 my-2">
+            <div class="d-flex justify-content-between">
+              <div>Connections</div>
+              <div> <button type="button" class="btn btn-success btn-sm " hx-get="/connectionAdd" hx-target="#modal-body"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop">
+                  Add Connection</button></div>
+            </div>
+          </div>
       
-      <table class="table table-sm table-hover">
-        <thead>
-          <tr>
-            <th class="d-none d-lg-table-cell">Application ID</th>
-            <th>Application<br>Name</th>
-            <th>Trust<br>Zone</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
 
-        <tbody>
-          <% for (const al of model2) { %>
-            <tr>
-              <td class="d-none d-lg-table-cell">
-                <%= al.ASSET_ID %>
-              </td>
-              <td>
-                <%= al.ASSET_NAME %>
-              </td>
-              <td>
-                <%= al.ASSET_ZONE %>
-              </td>
-              <td>
-                <%= al.DESCRIPTION %>
-              </td>
-              <td>
-                                  
-                  <button type="button" class="btn btn-warning "  hx-get="/assetEdit/<%= al.ASSET_ID %>" hx-target="#modal-body" 
-                    _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      Edit
-                    </button>
+      
+            <table class="table table-sm table-hover" id="sidePanel">
+              <thead>
+                <tr class="text-xs">
+                  <th class="d-none d-lg-table-cell">Connection ID</th>
+                  <th>Source Application</th>
+                  <th class="d-none d-lg-table-cell">Source Application Zone</th>
+                  <th>Destination Application</th>
+                  <th class="d-none d-lg-table-cell">Destination Application Zone</th>
+                  <th>Protocol</th>
+                  <th class="d-none d-md-table-cell">Encryption</th>
+                  <th class="d-none d-xl-table-cell">Server Authentication</th>
+                  <th class="d-none d-xl-table-cell">Client Authentication</th>
+                  <th class="d-none d-xl-table-cell">Client Authorisation</th>
+                  <th class="d-none d-xxl-table-cell">Server CRL</th>
+                  <th class="d-none d-xxl-table-cell">Client CRL</th>
+                  <th class="d-none d-xxl-table-cell">Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
 
-                  <button type="button" class="btn btn-danger "  hx-get="/assetDelete/<%= al.ASSET_ID %>" hx-target="#modal-body" 
-                  _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Delete
-                  </button>
-                                 
-              </td>
-            <tr>
-              <% } %>
-        </tbody>
-      </table>
+              <tbody>
+                <% for (const cn of model) { %>
+                  <tr class="text-xs">
+                    <td class="d-none d-lg-table-cell">
+                      <%= cn.CONN_ID %>
+                    </td>
+                    <td>
+                      <%= cn.SOURCE_ASSET_NAME %>
+                    </td>
+                    <td class="d-none d-lg-table-cell">
+                      <%= cn.SOURCE_ASSET_ZONE %>
+                    </td>
+                    <td>
+                      <%= cn.DEST_ASSET_NAME %>
+                    </td>
+                    <td class="d-none d-lg-table-cell">
+                      <%= cn.DEST_ASSET_ZONE %>
+                    </td>
+                    <td>
+                      <%= cn.PROTOCOL %>
+                    </td>
+                    <td class="d-none d-md-table-cell">
+                      <%= cn.ENCRYPTION %>
+                    </td>
+                    <td class="d-none d-xl-table-cell">
+                      <%= cn.SERVER_AUTHENTICATION %>
+                    </td>
+                    <td class="d-none d-xl-table-cell">
+                      <%= cn.CLIENT_AUTHENTICATION %>
+                    </td>
+                    <td class="d-none d-xl-table-cell">
+                      <%= cn.CLIENT_AUTHORISATION %>
+                    </td>
+                    <td class="d-none d-xxl-table-cell">
+                      <%= cn.SERVER_CRL %>
+                    </td>
+                    <td class="d-none d-xxl-table-cell">
+                      <%= cn.CLIENT_CRL %>
+                    </td>
+                    <td class="d-none d-xxl-table-cell">
+                      <%= cn.DESCRIPTION %>
+                    </td>
+                    <td>
+
+                      <button type="button" class="btn btn-success btn-sm" hx-get="/connectionClone/<%= cn.CONN_ID %>"
+                        hx-target="#modal-body" _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Clone
+                      </button>
+
+                      <button type="button" class="btn btn-warning btn-sm " hx-get="/connectionEdit/<%= cn.CONN_ID %>"
+                        hx-target="#modal-body" _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Edit
+                      </button>
+
+                      <button type="button" class="btn btn-danger btn-sm" hx-get="/connectionDelete/<%= cn.CONN_ID %>"
+                        hx-target="#modal-body" _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Delete
+                      </button>
+
+                    </td>
+                  <tr>
+                    <% } %>
+              </tbody>
+            </table>
+          
+        </div>
+      </div>
+      <div class="span">
+
+
+        <div class="card  mx-2 my-2 ">
+          <div class="card-header">
+            <div class="bg-light d-flex justify-content-between">
+              <div>Assets</div>
+              <div> <button type="button" class="btn btn-success btn-sm" hx-get="/assetAdd" hx-target="#modal-body"
+                  _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop">
+                  Add Asset
+                </button></div>
+            </div>
+
+          </div>
+
+          
+
+            <table class="table table-hover" id="sidePanel">
+              <thead>
+                <tr>
+                  <th class="d-none d-lg-table-cell">Application ID</th>
+                  <th>Application<br>Name</th>
+                  <th>Trust<br>Zone</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% for (const al of model2) { %>
+                  <tr>
+                    <td class="d-none d-lg-table-cell">
+                      <%= al.ASSET_ID %>
+                    </td>
+                    <td>
+                      <%= al.ASSET_NAME %>
+                    </td>
+                    <td>
+                      <%= al.ASSET_ZONE %>
+                    </td>
+                    <td>
+                      <%= al.DESCRIPTION %>
+                    </td>
+                    <td>
+
+                      <button type="button" class="btn btn-warning btn-sm" hx-get="/assetEdit/<%= al.ASSET_ID %>"
+                        hx-target="#modal-body" _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Edit
+                      </button>
+
+                      <button type="button" class="btn btn-danger btn-sm" hx-get="/assetDelete/<%= al.ASSET_ID %>"
+                        hx-target="#modal-body" _="on htmx:afterOnLoad wait 10ms then add .show to #staticBackdrop"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Delete
+                      </button>
+
+                    </td>
+                  <tr>
+                    <% } %>
+              </tbody>
+            </table>
+          
+        </div>
+      </div>
+
     </div>
+
   </div>
 
 
 
-  <div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+
+
+
+
+
+  <div class="modal modal-xl fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content" id="modal-body">
       </div>
